@@ -1,15 +1,11 @@
-var mysql = require('mysql');
+
+var connectionFactory = require('../infra/connectionFactory');
 
 module.exports = function(app) {
 
     app.get("/products", function(req,res) {
-        var connection = mysql.createConnection({
-            "host" : "localhost",
-            "user" : "root",
-            "password" : "root",
-            "database" : "learning_nodejs",
-            "port" : "3311"
-        });
+
+        var connection = connectionFactory();
 
         connection.query('select * from books', function(err, result) {
             if (err !== null)
