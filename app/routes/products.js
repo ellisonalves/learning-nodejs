@@ -5,7 +5,9 @@ module.exports = function(app) {
 
         var connection = app.infra.connectionFactory();
 
-        connection.query('select * from books', function(err, result) {
+        var bookDao = app.infra.bookDao;
+
+        bookDao.listBooks(connection, function(err, result) {
             if (err !== null)
                 console.log("err: ", err);
 

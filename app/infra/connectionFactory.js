@@ -10,7 +10,7 @@ function createDBConnection() {
         });
 }
 
-// wrapper. So, the connection won't be created before it would be necessary
+// wrapper. So, the connection won't be created before it is necessary
 module.exports = function() {
     return createDBConnection;
 }
