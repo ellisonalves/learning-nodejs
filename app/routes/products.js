@@ -1,13 +1,10 @@
-
 module.exports = function(app) {
 
     app.get("/products", function(req,res) {
-
         var connection = app.infra.connectionFactory();
+        var bookDao = new app.infra.BookDao(connection);
 
-        var bookDao = app.infra.bookDao;
-
-        bookDao.listBooks(connection, function(err, result) {
+        bookDao.listBooks(function(err, result) {
             if (err !== null)
                 console.log("err: ", err);
 
@@ -15,6 +12,13 @@ module.exports = function(app) {
         });
 
         connection.end();
+    });
+
+    app.get('products/remove', function() {
+        var connection = app.infra.connectionFactory();
+        var bookDao = app.infra.bookDao;
+
+        var book = bookDao.load(id, callback);
     });
 }
 
