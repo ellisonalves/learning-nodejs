@@ -13,6 +13,7 @@ To install system packages use: **npm install -g package_name**
 *** Packages being used in this project.
 - ejs - client-side templating language. It combines data and a template to produce HTML.
 - express - minimal and flexible nodejs web application framework.
+- express-load - library to load routes automatically
 - nodemon - utility that will monitor for any changes in your source and automatically restart your server. Perfect for development.
 - mysql - MysqlDriver for nodejs 
 

@@ -1,6 +1,6 @@
 var mysql = require('mysql');
 
-module.exports = function() {
+function createDBConnection() {
     return mysql.createConnection({
             "host" : "localhost",
             "user" : "root",
@@ -8,4 +8,9 @@ module.exports = function() {
             "database" : "learning_nodejs",
             "port" : "3311"
         });
+}
+
+// wrapper. So, the connection won't be created before it would be necessary
+module.exports = function() {
+    return createDBConnection;
 }
