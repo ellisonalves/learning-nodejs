@@ -3,12 +3,18 @@
     <table border="1">
         <tr>
             <td>id</td>
-            <td>nome</td>
+            <td>title</td>
+            <td>description</td>
+            <td>price</td>
         </tr>
+        <%  for (item in books) { %>
         <tr>
-            <td>1</td>
-            <td>livro de nodejs</td>
+            <td><%=books[item].id %></td>
+            <td><%=books[item].title%></td>
+            <td><%=books[item].description%></td>
+            <td><%=books[item].price%></td>
         </tr>
+        <% } %>
     </table>    
 </body>
 </html>  
