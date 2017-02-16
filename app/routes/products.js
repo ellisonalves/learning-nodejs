@@ -4,21 +4,43 @@ module.exports = function(app) {
         var connection = app.infra.connectionFactory();
         var bookDao = new app.infra.BookDao(connection);
 
-        bookDao.listBooks(function(err, result) {
-            if (err !== null)
-                console.log("err: ", err);
-
-            res.render('products/list', { "books" : result });
+        bookDao.list(function(error, results) {
+            if (error) throw error;
+            res.render('products/list', { "books" : results });
         });
 
         connection.end();
     });
 
-    app.get('products/remove', function() {
-        var connection = app.infra.connectionFactory();
-        var bookDao = app.infra.bookDao;
-
-        var book = bookDao.load(id, callback);
+    app.get("/products/form", function(req, res) {
+        res.render('products/form');
     });
+
+    app.delete("/product/:id", function(req, res) {
+        var connection = app.infra.connectionFactory();
+        var bookDao = new app.infra.BookDao(connection);
+
+        bookDao.remove(req.params, function(error, results, fields) {
+            if (error) throw error;
+            res.redirect('/products');
+        });
+
+        connection.end();
+    });
+
+    app.post("/products", function(req, res) {
+        var connection = app.infra.connectionFactory();
+        var bookDao = new app.infra.BookDao(connection);
+
+        var book = req.body;
+
+        bookDao.save(book, function(error, results, fields) {
+            if (error) throw error;
+            res.redirect('/products');
+        });
+
+        connection.end();
+    });
+
 }
 

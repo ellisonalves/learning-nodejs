@@ -15,7 +15,9 @@ To install system packages use: **npm install -g package_name**
 - express - minimal and flexible nodejs web application framework.
 - express-load - library to load routes automatically
 - nodemon - utility that will monitor for any changes in your source and automatically restart your server. Perfect for development.
-- mysql - MysqlDriver for nodejs 
+- mysql - MysqlDriver for nodejs
+- body-parser - Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
+- method-override - Lets you use HTTP verbs such as PUT or DELETE in places where the client doesn't support it.
 
 
 ** Running Project

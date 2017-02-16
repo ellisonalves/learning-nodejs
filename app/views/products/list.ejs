@@ -6,6 +6,7 @@
             <td>title</td>
             <td>description</td>
             <td>price</td>
+            <td>action</td>
         </tr>
         <%  for (item in books) { %>
         <tr>
@@ -13,8 +14,16 @@
             <td><%=books[item].title%></td>
             <td><%=books[item].description%></td>
             <td><%=books[item].price%></td>
+            <td>
+                <form method="POST" action="/product/<%=books[item].id%>?_method=DELETE">
+                    <input type="submit" value="Delete">
+                </form>
+            </td>
         </tr>
         <% } %>
     </table>    
+
+    <a href="/products/form">add</a>
+
 </body>
 </html>  
