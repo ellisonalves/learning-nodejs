@@ -21,6 +21,20 @@ var acceptJsonRequest = {
 var getRequest = processRequest(acceptJsonRequest);
 getRequest.end();
 
+
+// execute the get request
+var acceptHtmlRequest = {
+    hostname: 'localhost',
+    port: 3000,
+    path: '/products',
+    method : 'get',
+    headers: {
+        'Accept': 'text/html'
+    }
+};
+var getRequest = processRequest(acceptHtmlRequest);
+getRequest.end();
+
 // execute the post request
 var producesJsonRequest = {
     hostname: 'localhost',
