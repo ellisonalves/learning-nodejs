@@ -40,8 +40,10 @@ module.exports = function(app) {
         var bookDao = new app.infra.BookDao(connection);
 
         var book = req.body;
+        console.log("book: ", book);
 
         bookDao.save(book, function(error, results, fields) {
+            console.log(error);
             if (error) throw error;
             res.redirect('/products');
         });

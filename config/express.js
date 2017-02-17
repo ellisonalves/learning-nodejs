@@ -10,6 +10,7 @@ module.exports = function() {
 
     app.use(bodyParser.urlencoded({extended : true}));
     app.use(methodOverride('_method'));
+    app.use(bodyParser.json());
 
     // load the content inside routes, infra etc to the express object (app)
     // starting from the app folder
