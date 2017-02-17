@@ -6,7 +6,14 @@ module.exports = function(app) {
 
         bookDao.list(function(error, results) {
             if (error) throw error;
-            res.render('products/list', { "books" : results });
+            res.format({
+                html : function() {
+                    res.render('products/list', { "books" : results });
+                },
+                json : function() {
+                    res.json(results);
+                }
+            });
         });
 
         connection.end();
