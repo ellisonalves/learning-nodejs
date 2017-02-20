@@ -1,11 +1,11 @@
 module.exports = function(app) {
 
-    app.get("/products", function(req,res) {
+    app.get("/products", function(req, res, next) {
         var connection = app.infra.connectionFactory();
         var bookDao = new app.infra.BookDao(connection);
 
         bookDao.list(function(error, results) {
-            if (error) throw error;
+            if (error) return next(error);
             res.format({
                 html : function() {
                     res.render('products/list', { "books" : results });
@@ -40,23 +40,6 @@ module.exports = function(app) {
         var bookDao = new app.infra.BookDao(connection);
 
         var book = req.body;
-
-        req.assert('title', 'Title is required').notEmpty();
-        req.assert('price', 'Price invalid format').isFloat();
-        req.assert('description', 'Description is required').notEmpty();
-
-        var  errors = req.validationErrors();
-        if (errors) {
-            res.format({
-                html : function() {
-                    res.status(400).render('products/form', { "errors" : errors, "book" : book} );
-                },
-                json : function() {
-                    res.status(400).json(errors);
-                }
-            });
-            return;
-        }
 
         req.assert('title', 'Title is required').notEmpty();
         req.assert('price', 'Price invalid format').isFloat();
