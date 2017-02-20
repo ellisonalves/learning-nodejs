@@ -1,10 +1,11 @@
-var express = require('express');
-var load = require('express-load');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
-var expressValidator = require('express-validator');
-
 module.exports = function() {
+
+    var express = require('express');
+    var load = require('express-load');
+    var bodyParser = require('body-parser');
+    var methodOverride = require('method-override');
+    var expressValidator = require('express-validator');
+
     var app = express();
     app.set('view engine', 'ejs');
     app.set('views', './app/views');
