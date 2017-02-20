@@ -20,7 +20,7 @@ module.exports = function(app) {
     });
 
     app.get("/products/form", function(req, res) {
-        res.render('products/form');
+        res.render('products/form', {"errors" : {}, "book" : {}});
     });
 
     app.delete("/product/:id", function(req, res) {
@@ -40,16 +40,37 @@ module.exports = function(app) {
         var bookDao = new app.infra.BookDao(connection);
 
         var book = req.body;
-        console.log("book: ", book);
+
+        req.assert('title', 'Title is required').notEmpty();
+        req.assert('price', 'Price invalid format').isFloat();
+        req.assert('description', 'Description is required').notEmpty();
+
+        var  errors = req.validationErrors();
+        if (errors) {
+            res.format({
+                html : function() {
+                    res.status(400).render('products/form', { "errors" : errors, "book" : book} );
+                },
+                json : function() {
+                    res.status(400).json(errors);
+                }
+            });
+            return;
+        }
 
         bookDao.save(book, function(error, results, fields) {
-            console.log(error);
             if (error) throw error;
-            res.redirect('/products');
+            res.format({
+                html : function() {
+                    res.redirect('/products');
+                },
+                json : function() {
+                    res.json(book);
+                }
+            });
         });
 
         connection.end();
     });
 
 }
-

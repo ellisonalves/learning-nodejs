@@ -18,6 +18,7 @@ To install system packages use: **npm install -g package_name**
 * mysql - MysqlDriver for nodejs
 * body-parser - Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
 * method-override - Lets you use HTTP verbs such as PUT or DELETE in places where the client doesn't support it.
+* express-validator - Library that has common validations that can be used to validate data from requests.
 
 
 ## Running Project

@@ -9,7 +9,7 @@ function processRequest(config) {
 }
 
 // execute the get request
-var acceptJsonRequest = {
+var acceptHtmlRequest = {
     hostname: 'localhost',
     port: 3000,
     path: '/products',
@@ -18,36 +18,25 @@ var acceptJsonRequest = {
         'Accept': 'application/json'
     }
 };
-var getRequest = processRequest(acceptJsonRequest);
-getRequest.end();
-
-
-// execute the get request
-var acceptHtmlRequest = {
-    hostname: 'localhost',
-    port: 3000,
-    path: '/products',
-    method : 'get',
-    headers: {
-        'Accept': 'text/html'
-    }
-};
 var getRequest = processRequest(acceptHtmlRequest);
 getRequest.end();
 
 // execute the post request
+
 var producesJsonRequest = {
     hostname: 'localhost',
     port: 3000,
     path: '/products',
     method : 'post',
     headers: {
+        'Accept' : 'application/json',
         'Content-type':'application/json'
     }
 };
+
 var postRequest = processRequest(producesJsonRequest);
 var product = {
-    'title': 'new book title from client-android.js', 
+    
     'description' : 'new descripion for this book',
     'price' : '33.3' 
 };

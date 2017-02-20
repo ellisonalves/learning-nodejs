@@ -6,7 +6,7 @@ function createDBConnection() {
             "user" : "root",
             "password" : "root",
             "database" : "learning_nodejs",
-            "port" : "3311"
+            
         });
 }
 
