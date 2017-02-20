@@ -58,23 +58,6 @@ module.exports = function(app) {
             return;
         }
 
-        req.assert('title', 'Title is required').notEmpty();
-        req.assert('price', 'Price invalid format').isFloat();
-        req.assert('description', 'Description is required').notEmpty();
-
-        var  errors = req.validationErrors();
-        if (errors) {
-            res.format({
-                html : function() {
-                    res.status(400).render('products/form', { "errors" : errors, "book" : book} );
-                },
-                json : function() {
-                    res.status(400).json(errors);
-                }
-            });
-            return;
-        }
-
         bookDao.save(book, function(error, results, fields) {
             if (error) throw error;
             res.format({
