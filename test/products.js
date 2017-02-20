@@ -1,5 +1,11 @@
+var express = require('../config/express')();
+var supertest = require('supertest')(express);
+
 describe('ProductController', function() {
-    it('list json', function() {
-        console.log("verifying test list json");
+    it('get /products', function(done) {
+        supertest.get('/products')
+            .set('Accept', 'application/json')
+            .expect('Content-type', /json/)
+            .expect(200, done);
     });
 });
