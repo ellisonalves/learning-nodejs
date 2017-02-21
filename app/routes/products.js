@@ -1,11 +1,11 @@
 module.exports = function(app) {
 
-    app.get("/products", function(req,res) {
+    app.get("/products", function(req, res, next) {
         var connection = app.infra.connectionFactory();
         var bookDao = new app.infra.BookDao(connection);
 
         bookDao.list(function(error, results) {
-            if (error) throw error;
+            if (error) return next(error);
             res.format({
                 html : function() {
                     res.render('products/list', { "books" : results });
